@@ -46,7 +46,7 @@ This project was developed specifically to meet the Advanced Java Programming co
 
 ## How to Run
 1. Clone this repository:
-   git clone https://github.com/mohan-narayanapuram/XYZ-Hospital.git
+   git clone https://github.com/mohan-narayanapuram/Hospital-Management-System.git
 2. Open index.html in any modern web browser.
 3. Navigate through the menu to explore different pages.
 
