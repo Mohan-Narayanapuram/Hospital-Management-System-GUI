@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f8ff; }
+        table { width: 100%; background: #caf0f8; padding: 15px; border-radius: 8px; }
+        td { padding: 10px; }
+        input, select, button {
+            padding: 8px;
+            width: 95%;
+            border-radius: 5px;
+            border: 1px solid #0077b6;
+        }
+        button {
+            background: #0077b6;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover { background: #0096c7; }
+        #msg { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Patient Registration Form</h2>
+    <form id="regForm">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="name"></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" id="phone"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" id="email"></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><input type="number" id="age" min="1"></td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td>
+                    <select id="dept">
+                        <option value="">Select</option>
+                        <option>ENT</option>
+                        <option>Cardiology</option>
+                        <option>Orthopaedics</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+        <p id="msg"></p>
+    </form>
+
+    <script>
+        document.getElementById("regForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let dept = document.getElementById("dept").value.trim();
+            let msg = document.getElementById("msg");
+
+            let namePattern = /^[A-Za-z\s]+$/;
+            let phonePattern = /^\d{10}$/;
+            let emailPattern = /^[A-Za-z]{2}\d{4}@srmist\.edu\.in$/;
+
+            if (!namePattern.test(name)) {
+                msg.style.color = "red";
+                msg.innerText = "Invalid Name";
+                return;
+            }
+            if (!phonePattern.test(phone)) {
+                msg.style.color = "red";
+                msg.innerText = "Invalid Phone Number";
+                return;
+            }
+            if (!emailPattern.test(email)) {
+                msg.style.color = "red";
+                msg.innerText = "Invalid Email";
+                return;
+            }
+            if (age === "" || age <= 0) {
+                msg.style.color = "red";
+                msg.innerText = "Enter valid age";
+                return;
+            }
+            if (dept === "") {
+                msg.style.color = "red";
+                msg.innerText = "Select department";
+                return;
+            }
+
+            msg.style.color = "green";
+            msg.innerText = "Form Submitted Successfully!";
+        });
+    </script>
+</body>
+</html>
